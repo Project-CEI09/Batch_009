@@ -1,0 +1,96 @@
+<!-- qa_app/templates/qa_app/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Causality Detection</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: url('https://source.unsplash.com/1600x900/?finance,office') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .form-container {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            max-width: 700px;
+            width: 100%;
+        }
+        h1 {
+            font-weight: 700;
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+        .form-label {
+            font-size: 1.1em;
+            color: #495057;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container form-container">
+        <h1 class="text-center">Welcome to Financial Causality Detection</h1>
+        <p class="text-center mb-4">Analyze financial disclosures to uncover causal relationships effortlessly.</p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="context" class="form-label">Context (Paragraph from Financial Report)</label>
+                <textarea name="context" id="context" rows="8" class="form-control" placeholder="Enter the financial report paragraph here..." required></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="question" class="form-label">Question</label>
+                <input type="text" name="question" id="question" class="form-control" placeholder="Enter your question here..." required>
+            </div>
+            <div class="mb-4">
+                <label for="language" class="form-label">Select Language</label>
+                <select name="language" id="language" class="form-select" required>
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-custom">Analyze Document</button>
+            </div>
+        </form>
+    </div>
+    <!-- Bootstrap JS (Optional for interactive components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
